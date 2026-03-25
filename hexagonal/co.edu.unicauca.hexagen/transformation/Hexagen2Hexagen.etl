@@ -1,0 +1,34 @@
+rule Hexagon2Application
+    transform h : HEXAGEN!Hexagon
+    to a : TOP!Application {
+    
+    a.name = h.name;
+    a.basePackage = "co.edu.unicauca." + h.name?.toLowerCase();
+    a.javaVersion = "21";
+    
+    // Transformar los agregados del núcleo
+    a.aggregates = h.core.aggregates.equivalent();
+}
+
+rule AggregateRoot2Aggregate
+    transform ar : HEXAGEN!AggregateRoot
+    to ta : TOP!Aggregate {
+    
+    ta.name = ar.name;
+    // Mapeo de entidades internas
+    ta.entity = ar.internalEntities.equivalent();
+}
+
+rule Entity2Entity
+    transform e : HEXAGEN!Entity
+    to te : TOP!Entity {
+    
+    te.name = e.name;
+    // Mapeo de atributos
+    for (attr in e.values) {
+        var tAttr = new TOP!Attribute;
+        tAttr.name = attr.name;
+        tAttr.type = attr.type;
+        te.attributes.add(tAttr);
+    }
+}
