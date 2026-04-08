@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smm:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smm="smm" xsi:schemaLocation="smm smm.ecore" name="LibraryApplication" basePackage="co.edu.unicauca.hexagen" javaVersion="17" serverPort="8080">
+  <entities name="Book" tableName="Books" idType="Long" idGenerationStrategy="IDENTITY">
+    <attributes name="id" type="Long" isId="true"/>
+    <attributes name="title" type="String"/>
+    <attributes name="author" type="String"/>
+    <attributes name="isbn" type="String"/>
+  </entities>
+  <repositories name="BookRepository" entityType="Book" idType="Long"/>
+  <services name="BookService"/>
+  <controllers name="BookController" basePath="/books">
+    <endpoints name="getAllBooks" returnType="List&lt;Book>" path="/"/>
+    <endpoints name="getBookById" returnType="Book" path="/{id}">
+      <parameters name="id" type="Long"/>
+    </endpoints>
+    <endpoints name="createBook" returnType="Book" httpMethod="POST" path="/">
+      <parameters name="book" type="Book" kind="BODY"/>
+    </endpoints>
+  </controllers>
+</smm:Application>
