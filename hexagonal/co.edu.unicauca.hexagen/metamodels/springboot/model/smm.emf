@@ -1,0 +1,91 @@
+@namespace(uri="smm", prefix="smm")
+package smm;
+
+enum HttpMethod {
+  GET;
+  POST;
+  PUT;
+  DELETE;
+}
+
+enum ParamKind {
+  PATH;
+  QUERY;
+  BODY;
+}
+
+enum GenerationType {
+  AUTO;
+  IDENTITY;
+  SEQUENCE;
+  TABLE;
+}
+
+class Application {
+  attr String name;
+  attr String basePackage;
+  attr String javaVersion;
+  attr String serverPort;
+  val Entity[*] entities;
+  val ValueObject[*] valueObjects;
+  val Repository[*] repositories;
+  val Service[*] services;
+  val Controller[*] controllers;
+}
+
+abstract class NamedElement {
+  attr String name;
+}
+
+abstract class JavaClass extends NamedElement {
+  val Attribute[*] attributes;
+  val Method[*] methods;
+}
+
+class Entity extends JavaClass {
+  attr String tableName;
+  attr String idType;
+  attr GenerationType idGenerationStrategy;
+}
+
+class ValueObject extends JavaClass {
+}
+
+class Repository extends NamedElement {
+  attr String entityType;
+  attr String idType;
+}
+
+class Service extends JavaClass {
+  val Method[*] useCases;
+  ref Repository[*] repositories;
+}
+
+class Controller extends NamedElement {
+  attr String basePath;
+  ref Service service;
+  val Endpoint[*] endpoints;
+}
+
+class Attribute extends NamedElement {
+  attr String type;
+  attr boolean isId;
+  attr boolean isNullable;
+  attr boolean isUnique;
+  attr int length;
+}
+
+class Method extends NamedElement {
+  attr String returnType;
+  val Parameter[*] parameters;
+}
+
+class Endpoint extends Method {
+  attr HttpMethod httpMethod;
+  attr String path;
+}
+
+class Parameter extends NamedElement {
+  attr String type;
+  attr ParamKind kind;
+}
