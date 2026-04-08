@@ -1,0 +1,54 @@
+@namespace(uri="smm", prefix="smm")
+package smm;
+
+class Application {
+  attr String name;
+  attr String basePackage;
+  attr String javaVersion;
+  val Entity[*] entities;
+  val Service[*] services;
+  val Controller[*] controllers;
+  val Repository[*] repositories;
+}
+
+abstract class JavaClass {
+  attr String name;
+  val Attribute[*] attributes;
+  val Method[*] methods;
+}
+
+class Entity extends JavaClass {
+  attr String tableName;
+}
+
+class ValueObject extends JavaClass {
+}
+
+class Repository {
+  attr String entityType;
+}
+
+class Service extends JavaClass {
+  val Method[*] useCases;
+}
+
+class Controller {
+  attr String path;
+  val Method[*] endpoints;
+}
+
+class Attribute {
+  attr String name;
+  attr String type;
+}
+
+class Method {
+  attr String name;
+  attr String returnType;
+  val Parameter[*] parameters;
+}
+
+class Parameter {
+  attr String name;
+  attr String type;
+}
