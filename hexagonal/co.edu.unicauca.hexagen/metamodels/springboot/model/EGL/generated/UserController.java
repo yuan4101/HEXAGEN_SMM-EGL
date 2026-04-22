@@ -1,0 +1,23 @@
+package com.spring.app.controller;
+
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    private final UserService service;
+
+    public UserController(UserService service) {
+        this.service = service;
+    }
+
+    @GetMapping("/")
+    public  getAllUsers() {
+        return service.getAllUsers();
+    }
+    @PostMapping("/")
+    public  createUser() {
+        return service.createUser();
+    }
+}
