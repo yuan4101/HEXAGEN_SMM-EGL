@@ -1,0 +1,23 @@
+rule BookToCode
+    transform v : ValueObject {
+    
+    guard : v.name = "Book"
+    template : "Book.egl"
+    target : "generated/Book.java"
+}
+
+rule BookServiceToCode
+    transform s : Service {
+    
+    guard : s.name = "BookService"
+    template : "BookService.egl"
+    target : "generated/BookService.java"
+}
+
+rule BookControllerToCode
+    transform c : Controller {
+    
+    guard : c.name = "Book"
+    template : "BookController.egl"
+    target : "generated/BookController.java"
+}

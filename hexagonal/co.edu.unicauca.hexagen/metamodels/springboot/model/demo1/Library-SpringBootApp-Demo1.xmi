@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smm:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smm="smm" xsi:schemaLocation="smm ../smm.ecore" name="LibraryApp" basePackage="com.spring.app" javaVersion="21" serverPort="8080">
+  <valueObjects name="Book">
+    <attributes name="id" type="Long"/>
+    <attributes name="title" type="String"/>
+    <attributes name="author" type="String"/>
+  </valueObjects>
+  <services name="BookService">
+    <useCases name="getAllBooks" returnType="List&lt;Book>"/>
+  </services>
+  <controllers name="Book" basePath="/books" service="//@services.0">
+    <endpoints name="getAllBooks" returnType="List&lt;Book>" path="/"/>
+  </controllers>
+</smm:Application>

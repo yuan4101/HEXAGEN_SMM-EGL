@@ -1,0 +1,25 @@
+[% var app = Application.all.first(); %]
+[% var c = Controller.all.selectOne(x | x.name = "Book"); %]
+[% var s = c.service; %]
+package [%= app.basePackage %].controller;
+
+import java.util.List;
+import [%= app.basePackage %].model.Book;
+import [%= app.basePackage %].service.[%= s.name %];
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("[%= c.basePath %]")
+public class [%= c.name %]Controller {
+
+    private final [%= s.name %] service;
+
+    public [%= c.name %]Controller([%= s.name %] service) {
+        this.service = service;
+    }
+
+    @GetMapping("/")
+    public List<Book> getAllBooks() {
+        return service.getAllBooks();
+    }
+}

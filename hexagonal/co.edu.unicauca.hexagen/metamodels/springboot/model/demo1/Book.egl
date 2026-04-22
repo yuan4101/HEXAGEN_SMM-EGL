@@ -1,0 +1,29 @@
+[% var b = ValueObject.all.selectOne(v | v.name = "Book"); %]
+package [%= Application.all.first().basePackage %].model;
+
+public class [%= b.name %] {
+
+[% for (a in b.attributes) { %]
+    private [%= a.type %] [%= a.name %];
+[% } %]
+
+    public [%= b.name %]() {
+    }
+
+    public [%= b.name %]([% for (a in b.attributes) { %][%= a.type %] [%= a.name %][% if (hasMore) { %], [% } %][% } %]) {
+[% for (a in b.attributes) { %]
+        this.[%= a.name %] = [%= a.name %];
+[% } %]
+    }
+
+[% for (a in b.attributes) { %]
+    public [%= a.type %] get[%= a.name.firstToUpperCase() %]() {
+        return [%= a.name %];
+    }
+
+    public void set[%= a.name.firstToUpperCase() %]([%= a.type %] [%= a.name %]) {
+        this.[%= a.name %] = [%= a.name %];
+    }
+
+[% } %]
+}

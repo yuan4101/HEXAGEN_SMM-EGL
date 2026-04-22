@@ -1,0 +1,19 @@
+package com.spring.app.service;
+
+import java.util.*;
+import com.spring.app.model.Book;
+import org.springframework.stereotype.Service;
+
+@Service
+public class BookService {
+
+    public List<Book> getAllBooks() {
+        List<Book> books = new ArrayList<>();
+
+        books.add(new Book(1L, "Cien años de soledad", "Gabriel García Márquez"));
+        books.add(new Book(2L, "El Quijote", "Miguel de Cervantes"));
+        books.add(new Book(3L, "El amor en los tiempos del cólera", "Gabriel García Márquez"));
+
+        return books;
+    }
+}
