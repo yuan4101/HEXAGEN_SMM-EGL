@@ -1,0 +1,9 @@
+rule ControllerToCode 
+    transform c : Controller { // Por cada controlador en tu modelo ecore
+
+    // Definimos la plantilla EGL a usar
+    template : "Controller.egl"
+
+    // Definimos la ruta de salida para este controlador específico
+    target : "generated/" + c.name + "Controller.java"
+}
