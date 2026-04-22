@@ -15,7 +15,7 @@ public class BookController {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("/GET")
     public List<Book> getAllBooks() {
         return service.getAllBooks();
     }

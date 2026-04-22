@@ -1,5 +1,6 @@
 [% var app = Application.all.first(); %]
 [% var c = Controller.all.selectOne(x | x.name = "Book"); %]
+[% var e = c.endpoints.first(); %]
 [% var s = c.service; %]
 package [%= app.basePackage %].controller;
 
@@ -18,7 +19,7 @@ public class [%= c.name %]Controller {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("[%= e.path %]")
     public List<Book> getAllBooks() {
         return service.getAllBooks();
     }
