@@ -1,0 +1,21 @@
+package [%= Application.all.first().basePackage %].controller;
+
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("[%= c.basePath %]")
+public class [%= c.name %]Controller {
+
+    private final [%= c.service.name %] service;
+
+    public [%= c.name %]Controller([%= c.service.name %] service) {
+        this.service = service;
+    }
+
+[%  for (e in c.endpoints) { %]
+    @[%= e.httpMethod.toString().toLowerCase().firstToUpperCase() %]Mapping("[%= e.path %]")
+    public [%= e.returnType.~name %] [%= e.name %]() {
+        return service.[%= e.name %]();
+    }
+[%  } %]
+}
