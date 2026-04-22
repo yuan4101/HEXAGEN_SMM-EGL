@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.hexagen.springboot.app/src" modelPluginID="org.hexagen.springboot.app"
+    modelName="Springapp" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>springapp.ecore</foreignModel>
+  <genPackages prefix="Smm" disposableProviderFactory="true" ecorePackage="springapp.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="springapp.ecore#//HttpMethod">
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//HttpMethod/GET"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//HttpMethod/POST"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//HttpMethod/PUT"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//HttpMethod/DELETE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="springapp.ecore#//ParamKind">
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//ParamKind/PATH"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//ParamKind/QUERY"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//ParamKind/BODY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="springapp.ecore#//GenerationType">
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//GenerationType/AUTO"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//GenerationType/IDENTITY"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//GenerationType/SEQUENCE"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//GenerationType/TABLE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="springapp.ecore#//RelationType">
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//RelationType/ONE_TO_ONE"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//RelationType/ONE_TO_MANY"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//RelationType/MANY_TO_ONE"/>
+      <genEnumLiterals ecoreEnumLiteral="springapp.ecore#//RelationType/MANY_TO_MANY"/>
+    </genEnums>
+    <genClasses ecoreClass="springapp.ecore#//Relationship">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Relationship/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//Relationship/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Relationship/mappedBy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Relationship/fieldName"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="springapp.ecore#//Type">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Type/name"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//PrimitiveType"/>
+    <genClasses ecoreClass="springapp.ecore#//ReferenceType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//ReferenceType/entity"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//Attribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Attribute/isId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Attribute/isNullable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Attribute/isUnique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Attribute/length"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//Application">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Application/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Application/basePackage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Application/javaVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Application/serverPort"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Application/entities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Application/valueObjects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Application/repositories"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Application/services"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Application/controllers"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="springapp.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="springapp.ecore#//JavaClass">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//JavaClass/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//JavaClass/methods"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Entity/tableName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Entity/idGenerationStrategy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Entity/relationships"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//ValueObject"/>
+    <genClasses ecoreClass="springapp.ecore#//QueryMethod">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//QueryMethod/query"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//Repository">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//Repository/entity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Repository/queries"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//UseCase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//UseCase/transactional"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//Service">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Service/useCases"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//Service/repositories"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//Endpoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Endpoint/httpMethod"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Endpoint/path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Endpoint/responseCode"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//Endpoint/requestDTO"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//Endpoint/responseDTO"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//Parameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//Parameter/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Parameter/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Parameter/required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Parameter/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//DTO"/>
+    <genClasses ecoreClass="springapp.ecore#//Controller">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute springapp.ecore#//Controller/basePath"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//Controller/service"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Controller/endpoints"/>
+    </genClasses>
+    <genClasses ecoreClass="springapp.ecore#//Method">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference springapp.ecore#//Method/returnType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference springapp.ecore#//Method/parameters"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

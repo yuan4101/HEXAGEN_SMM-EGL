@@ -1,0 +1,136 @@
+@namespace(uri="smm", prefix="smm")
+package smm;
+
+enum HttpMethod {
+  GET;
+  POST;
+  PUT;
+  DELETE;
+}
+
+enum ParamKind {
+  PATH;
+  QUERY;
+  BODY;
+}
+
+enum GenerationType {
+  AUTO;
+  IDENTITY;
+  SEQUENCE;
+  TABLE;
+}
+
+enum RelationType {
+  ONE_TO_ONE;
+  ONE_TO_MANY;
+  MANY_TO_ONE;
+  MANY_TO_MANY;
+}
+
+class Relationship {
+  attr RelationType type;
+  ref Entity target;
+  attr String mappedBy;
+  attr String fieldName;
+}
+
+abstract class Type {
+  attr String name;
+}
+
+class PrimitiveType extends Type {
+}
+
+class ReferenceType extends Type {
+  ref Entity entity;
+}
+
+class Attribute extends NamedElement{
+  ref Type type;
+  attr boolean isId;
+  attr boolean isNullable;
+  attr boolean isUnique;
+  attr int length;
+}
+
+class Application {
+  attr String name;
+  attr String basePackage;
+  attr String javaVersion;
+  attr String serverPort;
+  val Entity[*] entities;
+  val ValueObject[*] valueObjects;
+  val Repository[*] repositories;
+  val Service[*] services;
+  val Controller[*] controllers;
+}
+
+abstract class NamedElement {
+  attr String name;
+}
+
+abstract class JavaClass extends NamedElement {
+  val Attribute[*] attributes;
+  val Method[*] methods;
+}
+
+class Entity extends JavaClass {
+  attr String tableName;
+  attr GenerationType idGenerationStrategy;
+  val Relationship[*] relationships;
+}
+
+class ValueObject extends JavaClass {
+}
+
+class QueryMethod extends Method {
+  attr String query; // JPQL o derivado
+}
+
+class Repository extends NamedElement {
+  ref Entity entity;
+  val QueryMethod[*] queries;
+}
+
+class UseCase extends Method {
+  attr boolean transactional;
+}
+
+class Service extends JavaClass {
+  val UseCase[*] useCases;
+  ref Repository[*] repositories;
+}
+
+class Endpoint extends Method {
+  attr HttpMethod httpMethod;
+  attr String path;
+  attr int responseCode;
+  
+  ref DTO requestDTO;
+  ref DTO responseDTO;
+}
+
+class Parameter extends NamedElement {
+  ref Type type;
+  attr ParamKind kind;
+  attr boolean required;
+  attr String defaultValue;
+}
+
+class DTO extends JavaClass {
+
+}
+
+class Controller extends NamedElement {
+  attr String basePath;
+  ref Service service;
+  val Endpoint[*] endpoints;
+}
+
+
+class Method extends NamedElement {
+  ref Type returnType;
+  val Parameter[*] parameters;
+}
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smm:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smm="smm" xsi:schemaLocation="smm springapp.ecore" name="Application" basePackage="com.spring.app" javaVersion="17" serverPort="8080">
+  <entities name="User" tableName="users">
+    <attributes name="id" isId="true"/>
+    <attributes name="name"/>
+    <attributes name="email" isUnique="true"/>
+  </entities>
+  <valueObjects name="UserDTO">
+    <attributes name="name"/>
+    <attributes name="email"/>
+  </valueObjects>
+  <repositories name="UserRepository" entity="//@entities.0">
+    <queries name="findByEmail">
+      <parameters name="email" kind="QUERY"/>
+    </queries>
+  </repositories>
+  <services name="UserService" repositories="//@repositories.0">
+    <useCases name="getAllUsers"/>
+    <useCases name="createUser" transactional="true">
+      <parameters name="user" kind="BODY"/>
+    </useCases>
+  </services>
+  <controllers name="User" basePath="/users" service="//@services.0">
+    <endpoints name="getAllUsers" path="/" responseCode="200" responseDTO="//@valueObjects.0"/>
+    <endpoints name="createUser" httpMethod="POST" path="/" responseCode="201" requestDTO="//@valueObjects.0" responseDTO="//@valueObjects.0">
+      <parameters name="user" kind="BODY"/>
+    </endpoints>
+  </controllers>
+</smm:Application>
